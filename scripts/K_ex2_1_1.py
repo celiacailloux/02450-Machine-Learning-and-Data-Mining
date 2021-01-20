@@ -18,7 +18,7 @@ pd.options.display.float_format = '{:,.3f}'.format
 
 # Load xls sheet with data
 # file_path = '../data/atm_data_part1.csv'
-file_path = '../_Data/nanonose.xls'
+file_path = '../Data/nanonose.xls'
 doc = pd.read_excel(file_path)
 
 # Extract attribute names (1st row, column 4 to 12)
