@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------
-# Imports a csv file and extracts class names to an integer python list
+# Imports a csv file and classifies each class with a name and an integer
 # 
 # ML tags: supervised learning, classification
 #
