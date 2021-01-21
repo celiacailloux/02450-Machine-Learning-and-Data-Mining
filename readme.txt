@@ -1,11 +1,3 @@
-All material including software are intended for research and educational purpose. Any sale or commercial distribution is strictly forbidden, unless the Department of Applied Mathematics and Computer Science, the Technical University of Denmark (DTU Compute) has given explicit permission.
- 
-The material including software is provided "as-is". Support is generally not available. No warranties of any kind, express or implied, are made as to it or any medium it may be on. No remedy will be provided for indirect, consequential, punitive or incidental damages arising from it, including such from negligence, strict liability, or breach of warranty or contract, even after notice of the possibility of such damages.
- 
-Inquiries to the Cognitive System Section, DTU Compute, http://cogsys.compute.dtu.dk
-
-The material is not for redistribution.
-
 The apriori method included in the toolbox is taken from http://www.borgelt.net/apriori.html, for
 details of the algorithm see also http://www.borgelt.net/doc/apriori/apriori.
 
