@@ -87,6 +87,6 @@ saveFigTitle    = exerciseName + '_' + 'all_combinations_of_attr'
 saveFigPath     = join('../figures/',saveFigTitle)
 savefig(saveFigPath, dpi = 200)
 print('\'{}\ saved as figure'.format(saveFigTitle))    
-print('Ran Exercise 2.1.2')
+print('Ran Exercise 2.1.2 \n')
 
 

@@ -51,4 +51,4 @@ C = len(classNames)
 print('----------- Summary statistics about data')
 print(X.describe())
 
-print('Ran Exercise 2.1.1')
+print('Ran Exercise 2.1.1\n')
