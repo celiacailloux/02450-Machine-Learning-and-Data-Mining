@@ -1,0 +1,3 @@
+[submodule "scripts/submodules"]
+	path = scripts/submodules
+	url = https://github.com/celiacailloux/submodules.git
