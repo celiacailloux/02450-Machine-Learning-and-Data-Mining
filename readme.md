@@ -2,7 +2,7 @@
 
 Scripts from ML course 02459 from Technical Univisersity of Denmark. Scrips have been modified for custom use (e.g. automation of various things, use of pandas rather than numpy arrays and such).
 
-## A priori Method
+## Toolboxes
 
 The apriori method included in the *Tools* is taken from http://www.borgelt.net/apriori.html, for
 details of the algorithm see also http://www.borgelt.net/doc/apriori/apriori.
