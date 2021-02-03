@@ -1,3 +1,5 @@
+# Machine-Learning-and-Data-Mining-Examples
+
 The apriori method included in the toolbox is taken from http://www.borgelt.net/apriori.html, for
 details of the algorithm see also http://www.borgelt.net/doc/apriori/apriori.
 
@@ -6,12 +8,12 @@ Description of the datasets in the Data folder:
 body.mat
 This is a subset of the dataset on body dimenstions available at http://www.sci.usq.edu.au/courses/STA3301/resources/Data/ 
 and described in 
-G. Heinz, L. J. Peterson, R. W. Johnson, and C. J. Kerk, ìExploring relationships in body dimensions,î Journal of Statistics Education, vol. 11, no. 2, 2003.
+G. Heinz, L. J. Peterson, R. W. Johnson, and C. J. Kerk, ‚ÄúExploring relationships in body dimensions,‚Äù Journal of Statistics Education, vol. 11, no. 2, 2003.
 
 faithful.mat and faithful.txt
 Dataset on eruption of the Old Faithful geyser described in
-A. Azzalini and A. Bowman, ìA look at some data on the old faithful geyser,î Applied Statistics, pp. 357ñ365, 1990.
-W. H‰rdle, Smoothing techniques: with implementation in S. Springer, 1991
+A. Azzalini and A. Bowman, ‚ÄúA look at some data on the old faithful geyser,‚Äù Applied Statistics, pp. 357‚Äì365, 1990.
+W. H√§rdle, Smoothing techniques: with implementation in S. Springer, 1991
 
 female.txt and male.txt
 Data is taken from http://www.cs.cmu.edu/afs/cs/project/ai-repository/ai/areas/nlp/corpora/names/,
@@ -22,23 +24,23 @@ Fisher's Iris data, for a description see also http://en.wikipedia.org/wiki/Iris
 
 nanonose.xls
 This data has been taken from the nanonose project, see also http://www.nanonose.dk, it is described in 
-T. S. Alstr¯m, J. Larsen, C. H. Nielsen, and N. B. Larsen, ìData-driven modeling of nano-nose gas sensor arrays,î in SPIE Defense, Security, and Sensing. International Society for Optics and Photonics, 2010, pp. 76 970Uñ76 970U.
+T. S. Alstr√∏m, J. Larsen, C. H. Nielsen, and N. B. Larsen, ‚ÄúData-driven modeling of nano-nose gas sensor arrays,‚Äù in SPIE Defense, Security, and Sensing. International Society for Optics and Photonics, 2010, pp. 76 970U‚Äì76 970U.
 
 StopWords
 A txt file of list of common words provided in the TMG toolbox.
 
 textDocs.txt
 This example of documents for a term-document matrix is taken from 
-L. EldÈn, Matrix Methods in Data Mining and Pattern Recognition. Philadelphia, PA, USA: Society for Industrial and Applied Mathematics, 2007.
+L. Eld√©n, Matrix Methods in Data Mining and Pattern Recognition. Philadelphia, PA, USA: Society for Industrial and Applied Mathematics, 2007.
 
 Wine.mat and Wine2.mat
-P. Cortez, A. Cerdeira, F. Almeida, T. Matos, and J. Reis. Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547ñ553, 2009.
+P. Cortez, A. Cerdeira, F. Almeida, T. Matos, and J. Reis. Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547‚Äì553, 2009.
 downloaded from http://archive.ics.uci.edu/ml/datasets/Wine+Quality
 Wine2 is same as Wine but with some outliers removed.
 
 zipdata.mat and digits.mat
 USPS handwritten digits availabe at http://www.cad.zju.edu.cn/home/dengcai/Data/MLData.html, see also
-J. J. Hull, ìA database for handwritten text recognition research,î Pattern Analysis and Machine Intelligence, IEEE Transactions on, vol. 16, no. 5, pp. 550ñ554,
+J. J. Hull, ‚ÄúA database for handwritten text recognition research,‚Äù Pattern Analysis and Machine Intelligence, IEEE Transactions on, vol. 16, no. 5, pp. 550‚Äì554,
 1994.
 
 wildfaces.mat and wildfaces_grayscale.mat
