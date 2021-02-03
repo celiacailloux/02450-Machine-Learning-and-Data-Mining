@@ -5,6 +5,8 @@
 # vs PCAs
 # 
 # ML tags: Variance Explained, PCA, SVD, preprocessing data, scaling data
+# PCA = Principal Component Analysis
+# SVD = Singular Value Decomposition
 #
 # 2021 celiacailloux@gmail.com
 #
@@ -29,34 +31,50 @@ close('all')
 plot_explained_variance_ratio   = False
 save_figure                     = True
 
+# %%
+
+# About PCA and SVD
+# It's a LINEAR dimensionality reduction. It uses SVD of the data (X) to 
+# project it to a lower dimensional space.
+# SVD is an easy way to compute n eigenvectors corresponding to the n LARGEST
+# eigenvalues. 
+# The n LARGEST eigenvalues preserves the info of the data the best, when 
+# reducing dimensionality.
+# SVD computes three matrices that together map X: U*Sigma*V_T =X.
+# The first n columns of V (= V_T transformed) are by definition the first
+# eigenvectors.
+# Hence, the projection of single observation x_i (1xN) onto the subspace spanned
+# by the FIRST n PC's can therefore be written b_i = (x_i)_T*V_n or
+# B = X_tilde*V_n
 
 # %%
 
-# Scale/standardize the datasat (=subtract mean value from data)
+# Scale/standardize the datasat (=subtract mean value from data = to center)
 '''
-# (transform: mean value is subtracted to transform the data to center, and
+# (transform: mean value is subtracted to transform the data to center, AND
 # scaled by dividing non-constant features by their standard deviation).
 # Note: Scaled data has zero mean and unit variance
+# Note: in ML notes transformed X is denoted X_tilde
 '''
 scaler  = StandardScaler().fit(X)
-X_std   = scaler.transform(X)
+X_std   = scaler.transform(X)       # = X_tilde
 # X_std   = (X-scaler.mean_)/scaler.scale_ #equivalent to the transform funciton
 
 # %%
 
-# Linear dimensionality reduction by SVD (=PCA by computing SVD of Y)
-# (X is centered but not scaled before applying the SVD)
+# Compute B (B = X_tilde*V_n) - a linear dimensionality reduction by SVD 
+# (= PCA by computing SVD of Y).
+# Note: X is centered but not scaled by default before applying the SVD
 pca         = PCA()
 pca.fit(X)                          # fits the model with X
-X_pca       = pca.fit_transform(X)  # fit the model with X and returns X after
+B_array     = pca.fit_transform(X)  # fit the model with X and returns X after
                                     # applying dimensionality reduction on X.
-X_std_pca   = pca.fit_transform(X_std)                                        
+B_std_array = pca.fit_transform(X_std)                                        
 
 # Convert X_pca to a dataframe
-Z = pd.DataFrame(data = X_pca,
-                 index = range(0,len(X_pca)),
-                 columns = ['PC{}'.format(i) for i in range(1, X_pca.shape[1]+1)])
-
+Z = pd.DataFrame(data = B_array, #B_std_array
+                 index = range(0,len(B_array)),
+                 columns = ['PC{}'.format(i) for i in range(1, B_array.shape[1]+1)])
 
 # Determine explained variance explained_variance_ratio_ attri
 # (=Compute variance explained by principal components)

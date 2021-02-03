@@ -36,16 +36,18 @@ classDict       = dict(zip(classNames, range(len(classNames))))
 y = [classDict[value] for value in classLabels]
 y = pd.DataFrame(y, columns = ['class'])
 
-# Preallocate memory, then extract excel data to matrix X
+# Define X by
+# dropping the entire first row (and resetting index)
+# and then only chosing column names that have attribute names
 X = doc.drop(doc.index[[0,0]]).reset_index()[attributeNames]
 # X = np.empty((90, 8))
 # for i, col_id in enumerate(range(3, 11)):
 #     X[:, i] = np.asarray(doc.col_values(col_id, 2, 92))
 
 # Compute values of N, M and C.
-N = len(y)
-M = len(attributeNames)
-C = len(classNames)
+N = len(y)              # number of observations
+M = len(attributeNames) # number of attributes
+C = len(classNames)     # number of classes
 
 # Print summary statistic 
 print('----------- Summary statistics about data')

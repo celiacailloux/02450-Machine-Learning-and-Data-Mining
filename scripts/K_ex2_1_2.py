@@ -42,7 +42,8 @@ from os.path import basename, splitext, join
 
 
 subplot_all_combinations(X, y, 
-                         classNames, attributeNames,
+                         classNames, 
+                         plot_labels = attributeNames,
                          n_attributes = M, 
                          n_classes = C,
                          fig_title = 'NanoNose data')
@@ -54,6 +55,6 @@ saveFigTitle    = exerciseName + '_' + 'all_combinations_of_attr'
 saveFigPath     = join('../figures/',saveFigTitle)
 savefig(saveFigPath, dpi = 200)
 print('\'{}\ saved as figure'.format(saveFigTitle))   
-# print('Ran Exercise 2.1.2 \n')
+print('Ran Exercise K_2.1.2 \n')
 
 

@@ -1,8 +1,7 @@
 # ----------------------------------------------------------------------------
-# This script plot the variance explained ratio / variance explained by
-# principal components using sklearn modules.
+# This script plots all combinations of PCAs against each other
 # 
-# ML tags: Variance Explained, PCA, SVD, preprocessing data, scaling data
+# ML tags: PCA, preprocessing data
 #
 # 2021 celiacailloux@gmail.com
 #
@@ -18,45 +17,78 @@ from submodules.plot_ML_course import subplot_all_combinations
 from matplotlib.pyplot import figure, plot, title, xlabel, ylabel, show, legend
 
 # %%
-# Indices of the principal components to be plotted
-i = 0
-j = 1
 
-print('Type of Z: {}'.format(type(Z)))
-print('Shape of Z: {}'.format(Z.shape))
+plot_single_of_PCs_ivsj         = True
+plot_all_combinations_of_PCAs   = False
+
+save_figure                     = True 
+
+# %% 
+
+# For more on PCA go to K_ex2_1_3
 
 # %%
-''' 
-Plotting PCAs against each other can explain most of the variance in a data 
-set. Below the the ith and jth principal components are plotted against each 
-other.
-'''
 
-# Plot PCAs of the data against each
-f = figure()
-title('NanoNose data: PCA')
-#Z = array(Z)
-for c in range(C):
-    # select indices belonging to class c by masking:
-    class_mask      = (y['class']==c) 
-    Z_i   = X.iloc[:, i][class_mask] # masking a pandas dataframe
-    Z_j   = X.iloc[:, j][class_mask]    
-    plot(Z_i, Z_j, 'o')
+# Single plot of PC_i and PC_j
+if plot_single_of_PCs_ivsj:
+    # Indices of the principal components to be plotted
+    i = 0
+    j = 1
     
-legend(classNames)
-xlabel(Z.columns.tolist()[i])
-ylabel(Z.columns.tolist()[j])
-# xlabel('PC{0}'.format(i+1))
-# ylabel('PC{0}'.format(j+1))
+    # Plot PCAs of the data against each
+    f = figure()
+    title('NanoNose data: PCA')
+    #Z = array(Z)
+    for c in range(C):
+        # select indices belonging to class c by masking:
+        class_mask      = (y['class']==c) 
+        Z_i   = X.iloc[:, i][class_mask] # masking a pandas dataframe
+        Z_j   = X.iloc[:, j][class_mask]    
+        plot(Z_i, Z_j, 'o')
+        
+    legend(classNames)
+    xlabel(Z.columns.tolist()[i])
+    ylabel(Z.columns.tolist()[j])
+    if save_figure:
+        # Save figure in the 'figures' directory
+        # close('all')  
+        exerciseName    = splitext(basename(__file__))[0]    
+        saveFigTitle    = exerciseName + '_' + '_PC_{0}vs{1}'.format(i+1,j+1) 
+        saveFigPath     = join('../figures/',saveFigTitle)
+        savefig(saveFigPath, dpi = 200)
+        print('\'{}\' saved as figure'.format(saveFigTitle))   
 
-# # Output result to screen
-# show()
+# %% 
+# About Z
 
-subplot_all_combinations(Z, y, 
-                         classNames, 
-                         attributeNames = Z.columns,
-                         n_attributes = M, 
-                         n_classes = C,
-                         fig_title = 'NanoNose data')
+# print('Type of Z: {}'.format(type(Z)))
+# print('Shape of Z: {}'.format(Z.shape))
 
-print('Ran Exercise 2.1.4\n')
+# %%
+
+if plot_all_combinations_of_PCAs:
+    ''' 
+    Plotting PCAs against each other can explain most of the variance in a data 
+    set. Below the the ith and jth principal components are plotted against each 
+    other.
+    '''
+    
+    
+    
+    # plot all combinations of PCAs with each other
+    subplot_all_combinations(Z, y, 
+                             classNames, 
+                             plot_labels = Z.columns,
+                             n_attributes = M, 
+                             n_classes = C,
+                             fig_title = 'NanoNose data')
+    if save_figure:
+        # Save figure in the 'figures' directory
+        # close('all')  
+        exerciseName    = splitext(basename(__file__))[0]    
+        saveFigTitle    = exerciseName + '_' + 'all_combinations_of_PCAs' 
+        saveFigPath     = join('../figures/',saveFigTitle)
+        savefig(saveFigPath, dpi = 200)
+        print('\'{}\' saved as figure'.format(saveFigTitle))   
+
+print('Ran Exercise K_2.1.4\n')

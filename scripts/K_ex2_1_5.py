@@ -1,21 +1,42 @@
-# exercise 2.2.4
-from ex2_1_1 import *
-from scipy.linalg import svd
+# ----------------------------------------------------------------------------
+# This script prints the projection of a single observation x_i onto the 
+# subspace spanned by V, filtered by the chosen class (b_i = (x_i)_T*V_n = PCi)
 
-# (requires data structures from ex. 2.2.1 and 2.2.3)
-Y = X - np.ones((N,1))*X.mean(0)
-U,S,V = svd(Y,full_matrices=False)
-V=V.T
+# 
+# ML tags: PCA, preprocessing data, classification, SVD
+#
+# SVD: singular value decomposition
+# 
+# 2021 celiacailloux@gmail.com
+#
+# 
+# exercise 2.1.5 (course 02450 DTU 2018)
+# ----------------------------------------------------------------------------
 
+# custom-made modules
+from K_ex2_1_1 import y, X, N,M
+from K_ex2_1_3 import Z
 
-print(V[:,1].T)
-## Projection of water class onto the 2nd principal component.
+# %%
+# Z is the what is refered to as B in the ML notes.
+# Z represents the coordinates of the vector x_i (column data correposinding 
+# to a given attribute/column name) when it is projected onto the n-dimensional 
+# subspace of V. (i.e. the bottom row in fig. 3.5 in ML notes)
 
-# When Y and V have type numpy.array, then @ is matrix multiplication
-print( Y[y==4,:] @ V[:,1] )
+# Read more in K_ex2_1_3 or ML notes
 
-# or convert V to a numpy.mat and use * (matrix multiplication for numpy.mat)
-#print((Y[y==4,:] * np.mat(V[:,1]).T).T)
+# %%
+# choose the integer corresponding to your class, 
+# and the desired principal component
 
+class_int   = 4
+PC          = 'PC2'
 
-print('Ran Exercise 2.1.5')
+# Projection of water class onto the 2nd principal component.
+# water is class = 4
+class_mask      = (y['class'] == class_int) 
+Z_water         = Z[PC][class_mask] 
+
+print(Z_water)
+
+print('Ran Exercise K_2.1.5')
