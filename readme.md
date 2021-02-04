@@ -1,6 +1,6 @@
 # Machine-Learning-and-Data-Mining-Examples
 
-Modified scripts from [ML course 02450](https://kurser.dtu.dk/course/02450) from Technical University of Denmark. The scripts have been modified for custom use (e.g. **automation** of various processes, use of **pandas** rather than numpy arrays and such). See topics in *About* and go to the folder [figures](figures) to get a quick overview of the conducted data analysis. 
+Modified scripts from [ML course 02450](https://kurser.dtu.dk/course/02450) from Technical University of Denmark. The scripts have been modified for custom use (e.g. **automation** of various processes, use of **pandas** rather than numpy arrays and such). See topics in *About* and go to the folder [figures](figures) to get a quick overview of the conducted data analysis and visualization. 
 
 ## Course Structure and Content
 
