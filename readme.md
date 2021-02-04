@@ -4,7 +4,7 @@ Scripts from [ML course 02450](https://kurser.dtu.dk/course/02450) from Technica
 
 ## Course Structure and Content
 
-In short the course is build in three phases:
+The course is build in three phases:
 1. **Data** Feature extraction and Visualization
 2. **Supervised Learning** Classification Regression
 3. **Unsupervised Learning** Clustering and Density Estimation
