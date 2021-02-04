@@ -19,6 +19,14 @@ In the folder [figures](figures) all computed figures from the scripts in the fo
 The apriori method included in the *Tools* is taken from http://www.borgelt.net/apriori.html, for
 details of the algorithm see also http://www.borgelt.net/doc/apriori/apriori.
 
+## Packages
+
+- matplotlib (imshow, ...)
+- os, sys
+- pandas, numpy
+- scipy
+- sklearn (preprocessing, metrics, decomposition, ...)
+
 ## Data
 
 Description of the datasets in the [Data](Data) folder:
