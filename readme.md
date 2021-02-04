@@ -30,17 +30,10 @@ A. Azzalini and A. Bowman, “A look at some data on the old faithful geyser,”
 W. Härdle, Smoothing techniques: with implementation in S. Springer, 1991
 - [female.txt and male.txt](http://www.cs.cmu.edu/afs/cs/project/ai-repository/ai/areas/nlp/corpora/names/)
 - [iris.xls](http://archive.ics.uci.edu/ml/datasets/Iris) Fisher's Iris data (see [description](http://en.wikipedia.org/wiki/Iris_flower_data_set))
-
-
-
 - [nanonose.xls](http://www.nanonose.dk) This data has been taken from the nanonose project, which is described in T. S. Alstrøm, J. Larsen, C. H. Nielsen, and N. B. Larsen, “Data-driven modeling of nano-nose gas sensor arrays,” in SPIE Defense, Security, and Sensing. International Society for Optics and Photonics, 2010, pp. 76 970U–76 970U.
 - *StopWords* A txt file of list of common words provided in the TMG toolbox.
-
 - *textDocs.txt* This example of documents for a term-document matrix is taken from L. Eldén, Matrix Methods in Data Mining and Pattern Recognition. Philadelphia, PA, USA: Society for Industrial and Applied Mathematics, 2007.
-
 - [Wine.mat and Wine2.mat](http://archive.ics.uci.edu/ml/datasets/Wine+Quality) P. Cortez, A. Cerdeira, F. Almeida, T. Matos, and J. Reis. Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547–553, 2009. Wine2 is same as Wine but with some outliers removed.
-
-- [zipdata.mat and digits.mat](http://www.cad.zju.edu.cn/home/dengcai/Data/MLData.html). USPS handwritten digits, see also J. J. Hull, “A database for handwritten text recognition research,” Pattern Analysis and Machine Intelligence, IEEE Transactions on, vol. 16, no. 5, pp. 550–554,
-1994.
+- [zipdata.mat and digits.mat](http://www.cad.zju.edu.cn/home/dengcai/Data/MLData.html). USPS handwritten digits, see also J. J. Hull, “A database for handwritten text recognition research,” Pattern Analysis and Machine Intelligence, IEEE Transactions on, vol. 16, no. 5, pp. 550–554,1994.
 - [wildfaces.mat and wildfaces_grayscale.mat]( http://tamaraberg.com/faceDataset/) Described in Tamara L. Berg, Alexander C. Berg, Jaety Edwards, David A. Forsyth 
 Neural Information Processing Systems (NIPS), 2004. The wildfaces.mat is an extract with 1000 examples of the original dataset and wildfaces_grayscale a gray scale converted version of these 1000 examples taken from the original data.
