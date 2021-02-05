@@ -42,7 +42,7 @@ if plot_single_of_PCs_ivsj:
     for c in range(C):
         # select indices belonging to class c by masking:
         class_mask      = (y['class']==c) 
-        Z_i   = X.iloc[:, i][class_mask] # masking a pandas dataframe
+        Z_i   = X.iloc[:, i][class_mask] # masking columns in a pandas dataframe
         Z_j   = X.iloc[:, j][class_mask]    
         plot(Z_i, Z_j, 'o')
         

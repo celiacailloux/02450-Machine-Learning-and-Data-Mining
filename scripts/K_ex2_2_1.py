@@ -7,7 +7,7 @@
 #
 # 2021 celiacailloux@gmail.com
 #
-# exercise 2.1.1 (course 02450 DTU 2018)
+# exercise 2.2.1 (course 02450 DTU 2018)
 # ----------------------------------------------------------------------------
 
 # standard modules
@@ -25,7 +25,7 @@ pd.options.display.float_format = '{:,.3f}'.format
 i = 0
 
 plot_digit_i    = True
-save_figure     = True
+save_figure     = False
 
 # %%
 # Load Matlab data file to python dict structure
@@ -37,10 +37,12 @@ testdata_array  = mat_data['testdata']
 
 
 # Convert traindata to dataframe
-traindata = pd.DataFrame(traindata_array)
-# Determine y and X
-y = traindata[[0]] #if instead [0] is used, then it converts from DataFrame to Series
-X = traindata.drop(traindata[[0]], axis = 1)
+traindata = pd.DataFrame(traindata_array,
+                         columns = ['pixel{}'.format(i) for i in range(0, traindata_array.shape[1])])
+# Determine y and X, and rename y
+y = traindata[['pixel0']].rename(columns = {'pixel0':'class'}) 
+X = traindata.drop(traindata[['pixel0']], axis = 1)
+# Note! #if instead ['pixel0] is used, then it converts from DataFrame to Series
 
 N = len(y) # number of observations, aka number of digits
 M = len(X.columns)
