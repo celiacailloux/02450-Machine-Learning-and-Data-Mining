@@ -1,7 +1,9 @@
 # ----------------------------------------------------------------------------
-# This script ...
+# This script computes and plots the variance explained and projects data 
+# onto principal component space. It also plots the a reconstruction of the
+# data to its original space with the chosen number of principal components.
 # 
-# ML tags: Variance Explained, 
+# ML tags: Variance Explained, Inverse Transformation, PC
 #
 # 2021 celiacailloux@gmail.com
 #
@@ -28,9 +30,19 @@ from sklearn.decomposition import PCA
 # %%
 import_data             = False
 
-plot_variance_explained = True
-plot_PCAi_vs_PCAj       = False 
-save_figure             = True 
+plot_variance_explained = False
+plot_PCi_vs_PCj         = False
+plot_PC_reconstruction  = True 
+save_figure             = False
+
+# Selection of classes, aka in this case digits to include in analysis and
+# plotting (to include all, n = range(10)) and number of classes (C)
+c = [0,1]
+C = len(c)
+# Number of principal components for reconstruction and number of digits 
+# (observations N) to visualize, aka number of digits
+K = 16
+n = range(6)
 
 exerciseName = splitext(basename(__file__))[0] # name of script
 
@@ -46,72 +58,53 @@ else:
     X = data['X']
     y = data['y']     
     
-
-# Selection of classes, aka digits to include in analysis (to include all, 
-# n = range(10) )
-n = [0,1]
-# Number of principal components for reconstruction
-K = 16
-# Digits to visualize, aka number of visualizations
-nD = range(6); 
-
-
-# # Load Matlab data file to python dict structure
-# # and extract variables of interest
-# traindata = loadmat('../Data/zipdata.mat')['traindata']
-# X = traindata[:,1:]
-# y = traindata[:,0]
-
-# Number of observations (N) and attributes (M)
-# and number of classes (C)
-N, M = X.shape
-C = len(n)
-
 # Classes represented by values, strings and paired in a dict
-classValues     = n
-classNames      = [str(num) for num in n]
+classValues     = c
+classNames      = [str(class_i) for class_i in c]
 classDict       = dict(zip(classNames,classValues))
 
-
-# Select subset of digits classes (n) to be inspected, by
+#%%
+# Select subset of digits classes (c) to be inspected, by
 # making a mask of booleans
-class_mask = y['class'].isin(n) # pandas masking with regards to a list
-X = X[class_mask] # masking rows in pandas
-y = y[class_mask]
-# number of observations of the subset n (e.g. the digits n = [0,1])
-N = X.shape[0]
+class_mask  = y['class'].isin(c) # pandas masking with regards to a list
+X           = X[class_mask] # masking rows in pandas
+y           = y[class_mask]
+# number of observations of the subset and number of pixels (sqrt_Mxsqrt_M)
+N, M        = X.shape
+sqrt_M = int(np.sqrt(M))
 
-# Get the variance explained
-pca         = PCA().fit(X)
-# pca.fit(X)
-
-# Get the project data onto principal component space
+# Get the variance explained and the data projected onto principal component 
+# space (B or Z)
+pca             = PCA(n_components = K).fit(X)
 exp_var_pca     = pca.explained_variance_ratio_ 
 B_array         = pca.fit_transform(X)
 Z = pd.DataFrame(data = B_array, #B_std_array
                  index = range(0,len(B_array)),
-                 columns = ['PC{}'.format(i) for i in range(1, B_array.shape[1]+1)])
+                 columns = ['PC{}'.format(i) for i in range(1, K+1)])#B_array.shape[1]+1)])
+X_proj          = pd.DataFrame(pca.inverse_transform(Z), columns = X.columns)
+# %%
 
 if plot_variance_explained:
     # Plot variance explained
     figure()
-    plot(exp_var_pca,'o-')
+    plot(range(1, K+1), exp_var_pca,'o-')# percentage of variance explained
+    # plot(pca.explained_variance_, 'o-')
     title('Variance explained by principal components\nDigits data');
     xlabel('Principal component');
     ylabel('Variance explained value');
     if save_figure:
         save_figure_as_script_title(exerciseName,
                                     comment = \
-                                        'USPS_handwritten_Variance_explained_by_PC')
+                                        'USPS_handwritten_Variance_explained_by_PC_w_{}_PCs'.format(K))
         
 
-if plot_PCAi_vs_PCAj:
+if plot_PCi_vs_PCj:
     # Plot PCA of the data
     f = figure()
     title('pixel vectors of handwr. digits projected on PCs')
-    for c in n:
+    for _class in c:
         # select indices belonging to class c:
-        class_mask_plot = (y['class'] == c).reset_index(drop = True)
+        class_mask_plot = (y['class'] == _class).reset_index(drop = True)
         plot(Z['PC1'][class_mask_plot], Z['PC2'][class_mask_plot], 'o')
     legend(classNames)
     xlabel('PC1')
@@ -120,24 +113,30 @@ if plot_PCAi_vs_PCAj:
             save_figure_as_script_title(exerciseName,
                                         comment = \
                                             'USPS_handwritten_digits_PC1vsPC2')    
-
-
-
-# # Visualize the reconstructed data from the first K principal components
-# # Select randomly D digits.
-# figure(figsize=(10,3))
-# W = Z[:,range(K)] @ V[:,range(K)].T
-# D = len(nD)
-# for d in range(D):
-#     digit_ix = np.random.randint(0,N)
-#     subplot(2, D, d+1)
-#     I = np.reshape(X[digit_ix,:], (16,16))
-#     imshow(I, cmap=cm.gray_r)
-#     title('Original')
-#     subplot(2, D, D+d+1)
-#     I = np.reshape(W[digit_ix,:]+X.mean(0), (16,16))
-#     imshow(I, cmap=cm.gray_r)
-#     title('Reconstr.');
+if plot_PC_reconstruction:
+    # Visualize the reconstructed data (X_reconstructured) from the first K
+    # principal components by selectecting D number of observations (or D
+    # number of random observations x_idx)
+    figure(figsize=(10,3))
+    D = len(n)
+    for d in range(D):
+        x_idx = np.random.randint(0,N)
+        subplot(2, D, d+1)
+        
+        # I = X.iloc[x_idx,:].values.reshape(16,16)
+        I = X.iloc[d,:].values.reshape(sqrt_M,sqrt_M)        
+        imshow(I, cmap=cm.gray_r)
+        title('Original')
+        
+        subplot(2, D, D+d+1)
+        # I = np.reshape(X_proj[d,:], (sqrt_M,sqrt_M))
+        I = X_proj.iloc[d,:].values.reshape(sqrt_M,sqrt_M) 
+        imshow(I, cmap=cm.gray_r)
+        title('Reconstr.')
+    if save_figure:
+            save_figure_as_script_title(exerciseName,
+                                        comment = \
+                                            'USPS_handwritten_original_vs_reconstructed_digit_w_{}_PCs'.format(K))          
     
 
 # # Visualize the pricipal components

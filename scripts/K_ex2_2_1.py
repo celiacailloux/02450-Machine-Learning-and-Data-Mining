@@ -22,7 +22,7 @@ pd.options.display.float_format = '{:,.3f}'.format
 
 # %%
 # Index of the digit to display
-i = 0
+i = 2
 
 plot_digit_i    = True
 save_figure     = False
@@ -44,8 +44,13 @@ y = traindata[['pixel0']].rename(columns = {'pixel0':'class'})
 X = traindata.drop(traindata[['pixel0']], axis = 1)
 # Note! #if instead ['pixel0] is used, then it converts from DataFrame to Series
 
+
+
+# Number of observations (N) and attributes (M) and number of classes (C)
+N, M = X.shape
 N = len(y) # number of observations, aka number of digits
 M = len(X.columns)
+
 
 # X = traindata['0']
 # y = pd.DataFrame(traindata)
@@ -55,12 +60,12 @@ y_array = traindata_array[:,0]
 
 # %%
 
-if plot_digit_i:
-    # Visualize the i'th digit as a vector
+if plot_digit_i:    
     f = figure()
     subplot(4,1,4);     # nrows, ncols, index,
     
-    J = X.iloc[0,:].values.reshape(1,M)
+    # Visualize the i'th digit as a vector
+    J = X.iloc[i,:].values.reshape(1,M)
     imshow(J, extent=(0,256,0,10), cmap=cm.gray_r);
     xlabel('Pixel number');
     title('Digit in vector format');
@@ -69,7 +74,7 @@ if plot_digit_i:
     # Visualize the i'th digit as an image
     subplot(2,1,1);
     sqrt_M = int(np.sqrt(M))
-    I = X.iloc[0,:].values.reshape(sqrt_M,sqrt_M)
+    I = X.iloc[i,:].values.reshape(sqrt_M,sqrt_M)
     imshow(I, extent=(0,16,0,16), cmap=cm.gray_r);
     title('Digit as an image');
     

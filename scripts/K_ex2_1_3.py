@@ -8,6 +8,8 @@
 # PCA = Principal Component Analysis
 # SVD = Singular Value Decomposition
 #
+# Python tags:
+#
 # 2021 celiacailloux@gmail.com
 #
 # Inspiration from 
