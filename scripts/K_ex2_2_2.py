@@ -13,7 +13,7 @@
 
 # custom-made modules
 from submodules.file_manage_pickle import save_as_pickle, get_saved_pickle
-from submodules.plot_ML_course import save_figure_as_script_title
+from submodules.plot_ML_course import save_figure_as_script_title, save_figure_w_comment
 
 
 # standard modules
@@ -33,7 +33,7 @@ import_data             = False
 plot_variance_explained = False
 plot_PCi_vs_PCj         = False
 plot_PC_reconstruction  = True 
-save_figure             = False
+save_figure             = True
 
 # Selection of classes, aka in this case digits to include in analysis and
 # plotting (to include all, n = range(10)) and number of classes (C)
@@ -44,7 +44,8 @@ C = len(c)
 K = 16
 n = range(6)
 
-exerciseName = splitext(basename(__file__))[0] # name of script
+# exerciseName = splitext(basename(__file__))[0] # name of script
+exerciseName = 'test'
 
 # %%
 if import_data:
@@ -93,7 +94,7 @@ if plot_variance_explained:
     xlabel('Principal component');
     ylabel('Variance explained value');
     if save_figure:
-        save_figure_as_script_title(exerciseName,
+        save_figure_as_script_title(__file__,
                                     comment = \
                                         'USPS_handwritten_Variance_explained_by_PC_w_{}_PCs'.format(K))
         
@@ -110,7 +111,7 @@ if plot_PCi_vs_PCj:
     xlabel('PC1')
     ylabel('PC2')
     if save_figure:
-            save_figure_as_script_title(exerciseName,
+            save_figure_as_script_title(__file__,
                                         comment = \
                                             'USPS_handwritten_digits_PC1vsPC2')    
 if plot_PC_reconstruction:
@@ -134,9 +135,14 @@ if plot_PC_reconstruction:
         imshow(I, cmap=cm.gray_r)
         title('Reconstr.')
     if save_figure:
-            save_figure_as_script_title(exerciseName,
-                                        comment = \
-                                            'USPS_handwritten_original_vs_reconstructed_digit_w_{}_PCs'.format(K))          
+        save_figure_as_script_title(file_path = None, 
+                                    exerciseName = exerciseName,
+                                    comment = \
+                                        'USPS_handwritten_original_vs_reconstructed_digit_w_{}_PCs'.format(K))    
+
+        save_figure_w_comment(figTitle = exerciseName,
+                              comment = 'test')#\
+        # 'USPS_handwritten_original_vs_reconstructed_digit_w_{}_PCs'.format(K))                    
     
 
 # # Visualize the pricipal components
